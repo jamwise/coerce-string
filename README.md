@@ -4,6 +4,16 @@ This tool will match a source string to a pattern as closely as it can manage. T
 
 # Basic Usage
 
+**Install**
+```
+npm install --save coerce-string
+```
+
+**Import**
+```
+import Coerce from 'coerce-string';
+
+**Use**
 ```
 const settings = {
     value: '02062016',
