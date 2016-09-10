@@ -182,5 +182,11 @@ function runTests(name, CoerceStringClass) {
               coerce.string("(234")
             ).toEqual("(234");
         });
+
+        it("should work statically", () => {
+            expect(
+              CoerceStringClass.string({ value: "234", pattern: "99/99/9999" })
+            ).toEqual("23/4");
+        });
     });
 }
