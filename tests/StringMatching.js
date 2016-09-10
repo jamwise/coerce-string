@@ -132,6 +132,13 @@ function runTests(name, CoerceStringClass) {
             ).toEqual("http://a");
         });
 
+        it("shouldn't prefill conditional characters", () => {
+            const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
+            expect(
+              coerce.string("http")
+            ).toEqual("http");
+        });
+
         it("should move conditional failures down the string regardless of type", () => {
             const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
             expect(
