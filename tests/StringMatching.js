@@ -71,7 +71,7 @@ function runTests(name, CoerceStringClass) {
             const coerce = new CoerceStringClass({ pattern: "http://Az" });
             expect(
               coerce.string("htAtp://")
-            ).toEqual("http://A");
+            ).toEqual("http://Az");
         });
 
         it("should not move characters that don't match, and continue filling out the pattern", () => {
@@ -119,7 +119,7 @@ function runTests(name, CoerceStringClass) {
             const coerce = new CoerceStringClass({ pattern: "httpS://", extend: {S: "s?"} });
             expect(
               coerce.string("https")
-            ).toEqual("https");
+            ).toEqual("https://");
             expect(
               coerce.string("httpa")
             ).toEqual("http://");
@@ -130,13 +130,6 @@ function runTests(name, CoerceStringClass) {
             expect(
               coerce.string("httpa")
             ).toEqual("http://a");
-        });
-
-        it("should not continue when there's a conditional match", () => {
-            const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
-            expect(
-              coerce.string("https")
-            ).toEqual("https");
         });
 
         it("should move conditional failures down the string regardless of type", () => {
@@ -165,6 +158,27 @@ function runTests(name, CoerceStringClass) {
             expect(
               coerce.string("234")
             ).toEqual("23/4");
+        });
+
+        it("should continue filling in the pattern if there's more pattern to go", () => {
+            const coerce = new CoerceStringClass({ pattern: "(999)-999-9999" });
+            expect(
+              coerce.string("(999)")
+            ).toEqual("(999)-");
+        });
+
+        it("should continue filling in the pattern if there's more pattern to go", () => {
+            const coerce = new CoerceStringClass({ pattern: "999-999-9999" });
+            expect(
+              coerce.string("999")
+            ).toEqual("999-");
+        });
+
+        it("should continue filling in the pattern if there's more pattern to go unless it's a special character", () => {
+            const coerce = new CoerceStringClass({ pattern: "999-999-9999" });
+            expect(
+              coerce.string("99")
+            ).toEqual("99");
         });
 
         it("should allow removing characters after adding them", () => {

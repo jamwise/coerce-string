@@ -40,11 +40,11 @@ function stringResult(value, pattern, specialTypes, prevValue) {
 
   let string = value;
 
-  let charArray = pattern.split('');
+  let patternArray = pattern.split('');
   
   // Here we loop through all of the characters in the pattern
-  for(let i = 0; i < charArray.length; i++) {
-    const a = charArray[i];
+  for(let i = 0; i < patternArray.length; i++) {
+    const a = patternArray[i];
     if(a in specialTypes) {
 
       /*
@@ -98,7 +98,7 @@ function stringResult(value, pattern, specialTypes, prevValue) {
           add the characters so long as it doesn't hit another specialType
         */
         let shouldPush;
-        if(charArray[i-1] in specialTypes) {
+        if(patternArray[i-1] in specialTypes) {
           shouldPush = chars[chars.length - 1];
         } else {
           shouldPush = true;
@@ -126,7 +126,8 @@ function stringResult(value, pattern, specialTypes, prevValue) {
           impossible)
         */
         const isDelete = prevValue && prevValue.length > value.length;
-        if(!isDelete && charArray[i-1] && charArray[i-1] === chars[chars.length-1]) {
+        const lastItemWasValid = patternArray[i-1] === chars[chars.length-1] || patternArray[i-1] in specialTypes && matches[matches.length-1];
+        if(!isDelete && patternArray[i-1] && lastItemWasValid) {
           chars.push(a);
           matches.push(false);
         }
