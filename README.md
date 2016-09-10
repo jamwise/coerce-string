@@ -1,6 +1,6 @@
 # String Coercion
 
-This tool will match a source string to a patter as closely as it can manage. This can be useful for use in html input masking or in formatting strings for display.
+This tool will match a source string to a pattern as closely as it can manage. This can be useful for use in html input masking or in formatting strings for display.
 
 # Basic Usage
 
