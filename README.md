@@ -27,9 +27,13 @@ A: '[A-Z]'
 *Special Note: Only use + at the end of a pattern.*
 
 **Examples**
+
 Date: '99/99/9999'
+
 Phone: '(999) 999-9999'
+
 Credit Card: '9999 9999 9999 9999'
+
 Web Address: 'http://+'
 
 # Custom regex
