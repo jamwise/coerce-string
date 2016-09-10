@@ -132,6 +132,20 @@ function runTests(name, CoerceStringClass) {
             ).toEqual("http://a");
         });
 
+        it("should fill in until there's a match, but skip conditionals unless they match", () => {
+            const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
+            expect(
+              coerce.string("abc")
+            ).toEqual("http://abc");
+        });
+
+        it("should fill in until there's a match, but add conditionals when they match", () => {
+            const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
+            expect(
+              coerce.string("sabc")
+            ).toEqual("https://abc");
+        });
+
         it("shouldn't prefill conditional characters", () => {
             const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
             expect(
