@@ -12,7 +12,7 @@ npm install --save coerce-string
 **Import**
 ```
 import Coerce from 'coerce-string';
-
+```
 **Use**
 ```
 const settings = {
