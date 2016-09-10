@@ -1,6 +1,6 @@
 # String Coercion
 
-This tool will match a source string to a pattern as closely as it can manage. This can be useful for use in html input masking or in formatting strings for display. This tries to be as unopinionated as possible, but implementation into any modern framework or workflow should be very easy. A pre-built react component might be added later on.
+This tool will match a source string to a pattern as closely as it can manage. This can be useful for use in html input masking or in formatting strings for display. This tries to be as unopinionated as possible, so implementation into any modern framework or workflow should be very easy. A pre-built react component might be added later on.
 
 # Basic Usage
 
