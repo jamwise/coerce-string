@@ -146,6 +146,13 @@ function runTests(name, CoerceStringClass) {
             ).toEqual("https://abc");
         });
 
+        it("should allow custom limited types", () => {
+            const coerce = new CoerceStringClass({ pattern: "http://5", extend: {5: ".{0,5}"} });
+            expect(
+              coerce.string("asdfgh")
+            ).toEqual("http://asdfg");
+        });
+
         it("shouldn't prefill conditional characters", () => {
             const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
             expect(
