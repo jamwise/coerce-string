@@ -105,7 +105,7 @@ const coerceInstance = new Coerce({
 Now let's have our user paste in 21223
 
 ```
-let string = coerce.string('21223');
+let string = coerceInstance.string('21223');
 // result '212-23'
 ```
 
