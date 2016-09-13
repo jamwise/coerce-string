@@ -60,7 +60,9 @@ function stringResult(value, pattern, specialTypes, prevValue) {
       */
       const regexp = new RegExp('^'+specialTypes[a], 'i');
       const match = string.match(regexp);
-      chars.push(match);
+      chars.push(match !== null ? match[0] : null);
+      //chars.push(match);
+      //console.log('Match: ', match, 'Chars: ', chars, 'Chars Join: ', chars.join(''), 'String: ', string, 'a: ', a);
       if(match && match[0] !== '') {
         matches.push(true);
         string = string.slice(match.length);
@@ -99,7 +101,7 @@ function stringResult(value, pattern, specialTypes, prevValue) {
         */
         let shouldPush;
         if(patternArray[i-1] in specialTypes) {
-          shouldPush = chars[chars.length - 1];
+          shouldPush = chars[chars.length - 1] || chars[chars.length - 1] === '';
         } else {
           shouldPush = true;
         }

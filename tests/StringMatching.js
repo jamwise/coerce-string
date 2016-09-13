@@ -230,5 +230,11 @@ function runTests(name, CoerceStringClass) {
               CoerceStringClass.string({ value: "234", pattern: "99/99/9999" })
             ).toEqual("23/4");
         });
+
+        it("should support complex regex", () => {
+            expect(
+              CoerceStringClass.string({ value: "$234,234.234", pattern: "$D", extend: { D: '([0-9]*,?)*.[0-9]*'} })
+            ).toEqual("$234,234.234");
+        });
     });
 }
