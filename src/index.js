@@ -12,12 +12,12 @@ class CoerceComponent extends Component {
         return {
             text: this.coerce.string('')
         }
-    },
+    }
     onChange(event) {
         this.setState({
             text: this.coerce.string(event.currentTarget.value)
         })
-    },
+    }
     render() {
         return <input 
                 onChange={this.onChange} 
