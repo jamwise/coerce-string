@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "coerce-string": "0.0.1",
+    "coerce-string": "0.0.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1"
   },
