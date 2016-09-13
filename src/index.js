@@ -38,8 +38,10 @@ class Container extends React.Component {
             <CoerceComponent pattern='(999) 999-9999' placeholder='(___) ___-____' />
             <h3>URL with optional "s"</h3>
             <CoerceComponent pattern='httpS://+' placeholder='http(s)://www.example.com' />
+            <h3>Date</h3>
+            <CoerceComponent pattern='99/99/9999' placeholder='__/__/____' />
             <h3>Money</h3>
-            <CoerceComponent pattern='$D' placeholder='$' />
+            <CoerceComponent pattern='$D' placeholder='$___' />
         </div>
     }
 }
