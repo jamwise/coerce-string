@@ -7,16 +7,16 @@ Examples: [https://jamalneufeld.github.io/coerce-string/](https://jamalneufeld.g
 # Basic Usage
 
 **Install**
-```
+```javascript
 npm install --save coerce-string
 ```
 
 **Import**
-```
+```javascript
 import Coerce from 'coerce-string';
 ```
 **Use**
-```
+```javascript
 const settings = {
     value: '02062016',
     pattern: '99/99/9999',
@@ -29,7 +29,7 @@ Coerce.string(settings);
 
 You can use some built-in "special characters" in your pattern. These use regex to match characters:
 
-```
+```javascript
 A: '[A-Z]'
 9: '[0-9]'
 *: '.'
@@ -52,7 +52,7 @@ Web Address: 'http://+'
 
 In some cases you'll want to expand on the built-in types. The Web address example for instance would restrict your string to non-ssl addresses. To add custom special characters just add a `extend` object to the settings object:
 
-```
+```javascript
 const settings = {
     pattern: 'httpS://+',
     extend: {
@@ -88,7 +88,7 @@ coerce.string('sabcdef');
 
 When the input value reaches the end with a match, but there's still more pattern to go, the tool will try to fill it out:
 
-```
+```javascript
 Coerce.string({
     value: '212',
     pattern: '999-999-9999',
@@ -98,7 +98,7 @@ Coerce.string({
 
 This is by design, it makes filling in masked inputs easier and less confusing, but causes an issue if you're using this as-you-type since backspace will be impossible and overwritten by the added character. For this use case, you should instantiate the class:
 
-```
+```javascript
 const coerceInstance = new Coerce({
     pattern: '999-999-9999',
 })
@@ -106,14 +106,14 @@ const coerceInstance = new Coerce({
 
 Now let's have our user paste in 21223
 
-```
+```javascript
 let string = coerceInstance.string('21223');
 // result '212-23'
 ```
 
 Now, the user realizes they wanted to change the 3rd digit, and proceeds to hit backspace 4 times:
 
-```
+```javascript
 string = coerceInstance.string('212-2'); // result: '212-2'
 string = coerceInstance.string('212-'); // result: '212-'
 string = coerceInstance.string('212'); // result: '212'
@@ -122,7 +122,7 @@ string = coerceInstance.string('21'); // result: '21'
 
 The user can now re-enter the number.  This is a very common use case and works with the instantiated version, but without it here's what happens:
 
-```
+```javascript
 string = Coerce.string('212-2'); // result: '212-2'
 string = Coerce.string('212-'); // result: '212-'
 string = Coerce.string('212'); // result: '212-'
