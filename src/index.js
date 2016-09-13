@@ -1,35 +1,47 @@
-import { Component } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Coerce from 'coerce-string';
 
-class CoerceComponent extends Component {
-    constructor() {
+class CoerceComponent extends React.Component {
+    constructor(props) {
+        super(props);
         this.coerce = new Coerce({
             value: '',
             pattern: this.props.pattern,
-            extend: {L: '.{1,10}', S: 's?'}
+            extend: {L: '.{1,10}', S: 's?', D:'([0-9]*,?)*.?[0-9]*'}
         })
-        return {
+        this.state = {
             text: this.coerce.string('')
         }
     }
-    onChange(event) {
+    onChange = (event) => {
         this.setState({
             text: this.coerce.string(event.currentTarget.value)
         })
     }
     render() {
-        return <input 
+        return (<input 
+                style={{
+                    width: '100%'
+                }}
                 onChange={this.onChange} 
                 value={this.state.text} 
-                type='text' />;
+                placeholder={this.props.placeholder}
+                type='text' />);
     }
 }
 
-class Container extends Component {
+class Container extends React.Component {
     render() {
-        <CoerceComponent pattern='AAAa' />
+        return <div>
+            <h3>Phone Number</h3>
+            <CoerceComponent pattern='(999) 999-9999' placeholder='(___) ___-____' />
+            <h3>URL with optional "s"</h3>
+            <CoerceComponent pattern='httpS://+' placeholder='http(s)://www.example.com' />
+            <h3>Money</h3>
+            <CoerceComponent pattern='$D' placeholder='$' />
+        </div>
     }
 }
 
-render (<Container />, document.getElementById('react-root'));
+ReactDOM.render(<Container />, document.getElementById('react-root'));
