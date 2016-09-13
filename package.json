@@ -1,0 +1,25 @@
+{
+  "name": "coerce-string-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "coerce-string": "0.0.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamalneufeld/coerce-string.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamalneufeld/coerce-string/issues"
+  },
+  "homepage": "https://github.com/jamalneufeld/coerce-string#readme"
+}
