@@ -2,6 +2,8 @@
 
 This tool will match a source string to a pattern as closely as it can manage. This can be useful for use in html input masking or in formatting strings for display. This tries to be as unopinionated as possible, so implementation into any modern framework or workflow should be very easy. A pre-built react component might be added later on.
 
+Examples: [https://jamalneufeld.github.io/coerce-string/](https://jamalneufeld.github.io/coerce-string/)
+
 # Basic Usage
 
 **Install**
