@@ -98,14 +98,17 @@ function runTests(name, CoerceStringClass) {
             ).toNotEqual("(234) 2-");
         });
 
-        it("should not fill in the pattern when there aren't characters in the string", () => {
+        it("should fill in the pattern when there aren't characters in the string", () => {
             const coerce = new CoerceStringClass({ pattern: "(999) 999-9999" });
             expect(
               coerce.string("")
-            ).toEqual("");
+            ).toEqual("(");
             expect(
               coerce.string("")
             ).toNotEqual("() -");
+            expect(
+              coerce.string("")
+            ).toNotEqual("");
         });
 
         it("should allow for custom special characters", () => {
@@ -123,6 +126,19 @@ function runTests(name, CoerceStringClass) {
             expect(
               coerce.string("httpa")
             ).toEqual("http://");
+        });
+
+        it("should fill in the pattern when there aren't characters in the string", () => {
+            const coerce = new CoerceStringClass({ pattern: "httpS://", extend: {S: "s?"} });
+            expect(
+              coerce.string("")
+            ).toEqual("http");
+            expect(
+              coerce.string("")
+            ).toNotEqual("");
+            expect(
+              coerce.string("")
+            ).toNotEqual("http://");
         });
 
         it("should move string characters that don't match conditional characters further down the string", () => {
