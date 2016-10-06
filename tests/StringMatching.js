@@ -129,19 +129,19 @@ function runTests(name, CoerceStringClass) {
         });
 
         it("should fill in the pattern when there aren't characters in the string", () => {
-            const coerce = new CoerceStringClass({ pattern: "httpS://", extend: {S: "s?"} });
+            const settings = { pattern: "httpS://", extend: {S: "s?"} };
             expect(
-              coerce.string("")
+              CoerceStringClass.string({ value: "", ...settings })
             ).toEqual("http");
             expect(
-              coerce.string("")
+              CoerceStringClass.string({ value: "", ...settings })
             ).toNotEqual("");
             expect(
-              coerce.string("")
+              CoerceStringClass.string({ value: "", ...settings })
             ).toNotEqual("http://");
         });
 
-        it("should fill in the pattern when there aren't characters in the string after a delete", () => {
+        it("shouldn't fill in the pattern when there aren't characters in the string after a delete", () => {
             const coerce = new CoerceStringClass({ pattern: "httpS://", extend: {S: "s?"} });
             expect(
               coerce.string("h")
@@ -157,7 +157,7 @@ function runTests(name, CoerceStringClass) {
             ).toEqual("h");
             expect(
               coerce.string("")
-            ).toEqual("http");
+            ).toEqual("");
         });
 
         it("should move string characters that don't match conditional characters further down the string", () => {
