@@ -32,8 +32,8 @@ class CoerceComponent extends React.Component {
 }
 
 class Container extends React.Component {
-    render() {
-        return <div>
+    render = () => (
+        <div>
             <h3>Phone Number</h3>
             <CoerceComponent pattern='(999) 999-9999' placeholder='(___) ___-____' />
             <h3>URL with optional "s"</h3>
@@ -43,7 +43,7 @@ class Container extends React.Component {
             <h3>Money</h3>
             <CoerceComponent pattern='$D' placeholder='$___' />
         </div>
-    }
+    )
 }
 
 ReactDOM.render(<Container />, document.getElementById('react-root'));
