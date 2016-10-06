@@ -62,7 +62,6 @@ function stringResult(value, pattern, specialTypes, prevValue) {
       const match = string.match(regexp);
       chars.push(match !== null ? match[0] : null);
       //chars.push(match);
-      //console.log('Match: ', match, 'Chars: ', chars, 'Chars Join: ', chars.join(''), 'String: ', string, 'a: ', a);
       if(match && match[0] !== '') {
         matches.push(true);
         string = string.slice(match.length);
