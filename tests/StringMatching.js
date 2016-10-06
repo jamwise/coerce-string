@@ -141,6 +141,25 @@ function runTests(name, CoerceStringClass) {
             ).toNotEqual("http://");
         });
 
+        it("should fill in the pattern when there aren't characters in the string after a delete", () => {
+            const coerce = new CoerceStringClass({ pattern: "httpS://", extend: {S: "s?"} });
+            expect(
+              coerce.string("h")
+            ).toEqual("http");
+            expect(
+              coerce.string("htt")
+            ).toEqual("htt");
+            expect(
+              coerce.string("ht")
+            ).toEqual("ht");
+            expect(
+              coerce.string("h")
+            ).toEqual("h");
+            expect(
+              coerce.string("")
+            ).toEqual("http");
+        });
+
         it("should move string characters that don't match conditional characters further down the string", () => {
             const coerce = new CoerceStringClass({ pattern: "httpS://+", extend: {S: "s?"} });
             expect(
@@ -252,5 +271,6 @@ function runTests(name, CoerceStringClass) {
               CoerceStringClass.string({ value: "$234,234.234", pattern: "$D", extend: { D: '([0-9]*,?)*.[0-9]*'} })
             ).toEqual("$234,234.234");
         });
+
     });
 }

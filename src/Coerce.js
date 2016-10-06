@@ -129,9 +129,13 @@ function stringResult(value, pattern, specialTypes, prevValue) {
         */
         const isDelete = prevValue && prevValue.length > value.length;
         const lastItemWasValid = patternArray[i-1] === chars[chars.length-1] || patternArray[i-1] in specialTypes && matches[matches.length-1];
-        if(!isDelete && patternArray[i-1] && lastItemWasValid || i === 0 && string === '') {
+        if(!isDelete && patternArray[i-1] && lastItemWasValid) {
           chars.push(a);
           matches.push(false);
+        } else if(i === 0 && string === '') {
+          chars.push(a);
+          matches.push(false);
+          prevValue = '';
         }
       }
     } else {
